@@ -12,4 +12,4 @@ with open(sys.argv[1]) as f:
             date = match.group()
             continue
         else:
-            print '{},{}'.format(date, line)
+            print '{},{}'.format(date, line.rstrip('\n'))
