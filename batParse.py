@@ -10,7 +10,12 @@ with open(sys.argv[1]) as f:
         date_match = re.search('\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}', line)
         match = re.search("POWER_SUPPLY_([A-Z_]*)=([A-Za-z0-9\-]*)", line)
 
-        if date_match and len(data) > 0:
+        if date_match:
+            date = date_match.group()
+        else:
+            data[match.group(1)] = match.group(2)
+
+        if len(data) == 16:
             # found next date need to print previous data point
             print ','.join([date,
                     data['NAME'],
@@ -31,8 +36,3 @@ with open(sys.argv[1]) as f:
                     data['SERIAL_NUMBER']])
 
             data = {}
-
-        if date_match:
-            date = date_match.group()
-        else:
-            data[match.group(1)] = match.group(2)
