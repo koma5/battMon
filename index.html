@@ -16,10 +16,13 @@ Plotly.d3.csv("./data.csv", function(csvData) {
     var data = [{
         x: csvData.map(a => a.date),
         y: csvData.map(a => a.CAPACITY),
-        type: 'scatter'
+        mode: 'lines+markers'
     }];
 
-    Plotly.newPlot('plot', data, {});
+    var today = new Date();
+    var oneDayBack = new Date(new Date(today).setHours(today.getHours()-24));
+
+    Plotly.newPlot('plot', data, { xaxis: {range: [oneDayBack, today] }, yaxis: { range: [0, 100], fixedrange: true }});
 
 });
 
