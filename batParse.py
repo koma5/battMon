@@ -1,5 +1,7 @@
 import sys, re, os
 
+print "date, value"
+
 with open(sys.argv[1]) as f:  
     for line in f:
         ## regex not matching negative timezones
