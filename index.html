@@ -1,0 +1,30 @@
+<html>
+    <head>
+    <meta charset="utf-8"> 
+    <script src="./plotly-latest.min.js"></script>
+    <meta http-equiv="refresh" content="300">
+
+</head>
+<body>
+
+<div id="plot"></div>
+
+<script>
+
+Plotly.d3.csv("./data.csv", function(csvData) {
+
+    var data = [{
+        x: csvData.map(a => a.date),
+        y: csvData.map(a => a.CAPACITY),
+        type: 'scatter'
+    }];
+
+    Plotly.newPlot('plot', data, {});
+
+});
+
+</script>
+
+</body>
+</html>
+
