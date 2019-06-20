@@ -14,10 +14,18 @@
 Plotly.d3.csv("./data.csv", function(csvData) {
 
     var data = [{
+        name: 'lie',
         x: csvData.map(a => a.date),
         y: csvData.map(a => a.CAPACITY),
         mode: 'lines+markers'
-    }];
+    },
+    {
+        name: 'actual charge',
+        x: csvData.map(a => a.date),
+        y: csvData.map(a => a.CHARGE_NOW / a.CHARGE_FULL_DESIGN * 100),
+        mode: 'lines+markers'
+    }
+    ];
 
     var today = new Date();
     var oneDayBack = new Date(new Date(today).setHours(today.getHours()-24));
